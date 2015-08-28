@@ -44,12 +44,13 @@
   tags:
     - common
   service: name=NetworkManager state=started enabled=yes
+  when: not ipa_nova_join
 
 - name: Add second ethernet interface
   tags:
     - common
   command: nmcli connection  add type ethernet ifname eth1  con-name ethernet-eth1
-  when: not ansible_eth1.ipv4 is defined
+  when: (not ipa_nova_join) and (not ansible_eth1.ipv4 is defined)
 
 - name: Set up authorized_keys for the deploy user
   tags:

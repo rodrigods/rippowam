@@ -34,6 +34,13 @@
   template: src=answers.txt.j2
             dest=/answers.txt
   register: answers
+  when: not ipa_nova_join
+
+- name: Copy answer file
+  template: src=answers.txt.autoregister-neutron
+            dest=/answers.txt
+  register: answers
+  when: ipa_nova_join
 
 - name: Run packstack
   command: "{{ packstack_dir }}/bin/packstack --answer-file /answers.txt"
