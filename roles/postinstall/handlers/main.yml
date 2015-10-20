@@ -1,0 +1,88 @@
+---
+- name: restart nova-api
+  sudo: yes
+  service: name=openstack-nova-api state=restarted
+
+- name: restart nova-compute
+  sudo: yes
+  service: name=openstack-nova-compute state=restarted
+
+- name: restart nova-cert
+  sudo: yes
+  service: name=openstack-nova-cert state=restarted
+
+- name: restart nova-conductor
+  sudo: yes
+  service: name=openstack-nova-conductor state=restarted
+
+- name: restart nova-consoleauth
+  sudo: yes
+  service: name=openstack-nova-consoleauth state=restarted
+
+- name: restart nova-novncproxy
+  sudo: yes
+  service: name=openstack-nova-novncproxy state=restarted
+
+- name: restart nova-scheduler
+  sudo: yes
+  service: name=openstack-nova-scheduler state=restarted
+
+- name: restart glance-api
+  sudo: yes
+  service: name=openstack-glance-api state=restarted
+
+- name: restart glance-registry
+  sudo: yes
+  service: name=openstack-glance-registry state=restarted
+
+- name: restart cinder-api
+  sudo: yes
+  service: name=openstack-cinder-api state=restarted
+
+- name: restart cinder-scheduler
+  sudo: yes
+  service: name=openstack-cinder-scheduler state=restarted
+
+- name: restart cinder-volume
+  sudo: yes
+  service: name=openstack-cinder-scheduler state=restarted
+
+- name: restart neutron-api
+  sudo: yes
+  service: name=neutron-server state=restarted
+
+- name: restart neutron-dhcp
+  sudo: yes
+  service: name=neutron-dhcp-agent state=restarted
+
+- name: restart neutron-l3
+  sudo: yes
+  service: name=neutron-l3-agent state=restarted
+
+- name: restart neutron-metadata
+  sudo: yes
+  service: name=neutron-metadata-agent state=restarted
+
+- name: restart neutron-openvswitch
+  sudo: yes
+  service: name=neutron-openvswitch-agent state=restarted
+
+- name: restart httpd
+  sudo: yes
+  service: name=httpd state=restarted
+
+- name: restart sssd
+  service: name=sssd state=restarted
+
+- name: restart firewalld
+  service: name=firewalld state=restarted
+
+- name: restart mariadb
+  service: name=mariadb state=restarted
+
+- name: restart haproxy
+  service: name=haproxy state=restarted
+
+- name: restart qpidd
+  service: name=qpidd state=restarted
+

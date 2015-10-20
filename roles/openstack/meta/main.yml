@@ -1,7 +1,8 @@
 ---
 dependencies:
+  - { role: rhos } 
   - { role: maria-prep }
-#  - { role: kerberos-http }
+  - { role: kerberos-http }
   - { role: packstack }
   - { role: haproxy }
   - { role: serviceauth }
