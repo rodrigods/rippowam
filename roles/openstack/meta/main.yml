@@ -1,0 +1,9 @@
+---
+dependencies:
+  - { role: maria-prep }
+#  - { role: kerberos-http }
+  - { role: packstack }
+  - { role: haproxy }
+  - { role: serviceauth }
+  - { role: postinstall }
+  - { role: proton }

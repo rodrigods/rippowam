@@ -1,0 +1,37 @@
+---
+
+- include: infopipe.yml
+- include: keystone.yml
+- include: horizon.yml
+- include: ipa-post-packstack.yml
+- include: mysql.yml
+# - include: firewall.yml
+- meta: flush_handlers
+- include: keystone-environment.yml
+- include: keystone-sssd.yml
+- include: keystone-ipsilon.yml
+- include: mariadb-kerberos.yml
+#- include: barbican.yml
+#- include: test-encrypted-volumes.yml
+
+- name: install accrc files
+  sudo: no
+  template: src={{ item }}.j2
+            dest=~/{{ item }}
+  with_items:
+    - adminrc
+    - demorc
+    - kerb-accrc
+    - fed-accrc
+
+
+
+- name: get local copies of rc files
+  sudo: no
+  local_action: template src={{ item }}.j2
+                      dest={{ deployment_dir  }}/{{ item }}
+  with_items:
+    - adminrc
+    - demorc
+    - kerb-accrc
+    - fed-accrc

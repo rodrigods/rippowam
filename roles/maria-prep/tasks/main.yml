@@ -1,0 +1,23 @@
+- name: install GSSAPI enabled Maria repo
+  copy: src={{ item }}
+        dest=/etc/yum.repos.d/{{ item }}
+  with_items:
+    - rharwood-galera-maria.repo
+
+# /etc/my.cnf was owned by  mariadb-libs before
+# but now is owned by mariadb-config.
+# Upgrading them seperately avoids a collision and
+# failure
+- name: preinstall Kerberized maridb libs
+  yum: name={{ item }} state=latest
+  with_items:
+      - mariadb-libs
+
+- name: preinstall Kerberized maridb
+  yum: name={{ item }} state=latest
+  with_items:
+      - mariadb-galera-server
+      - mariadb-config
+      - mariadb
+      - mariadb-errmsg
+      - mariadb-common

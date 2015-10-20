@@ -101,3 +101,5 @@
            enabled=yes
 
 - meta: flush_handlers
+
+- include: haproxy-fixups.yml
