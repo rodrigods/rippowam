@@ -3,11 +3,11 @@ dependencies:
   - { role: common }
   - { role: ipaclient}
   - { role: rhos } 
-  - { role: maria-prep }
+#  - { role: maria-prep }
   - { role: kerberos-http }
   - { role: packstack }
   - { role: haproxy }
   - { role: serviceauth }
   - { role: postinstall }
-  - { role: mariadb-kerberos}
+#  - { role: mariadb-kerberos}
   - { role: proton }

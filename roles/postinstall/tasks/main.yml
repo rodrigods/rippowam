@@ -4,7 +4,6 @@
 - include: keystone.yml
 - include: horizon.yml
 - include: ipa-post-packstack.yml
-- include: mysql.yml
 # - include: firewall.yml
 - meta: flush_handlers
 - include: keystone-environment.yml
