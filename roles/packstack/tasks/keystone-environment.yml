@@ -77,6 +77,10 @@
   command: openstack role add --project services --group services service
   environment: os_env
 
+- name: admin role for services group on services project
+  command: openstack role add --project services --group services admin
+  environment: os_env
+
 - name: list idps
   command: openstack identity provider list -c ID -f csv
   environment: os_env

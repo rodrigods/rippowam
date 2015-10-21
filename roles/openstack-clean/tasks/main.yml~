@@ -1,0 +1,11 @@
+---
+
+
+- name: kinit
+  tags:
+   - cleanup
+  shell: klist &>/dev/null || echo {{ ipa_admin_password }} | kinit admin@{{ ipa_realm }}
+  changed_when: false
+
+
+name: remove host entry for openstack
