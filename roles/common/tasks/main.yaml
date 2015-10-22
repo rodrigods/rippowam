@@ -1,4 +1,10 @@
 ---
+
+- name: initialize nameservers
+  lineinfile: dest=/etc/resolv.conf
+              line='nameserver {{ ipa_forwarder }}'
+              insertafter='^search'
+
 - name: disable selinux
   tags:
     - common
