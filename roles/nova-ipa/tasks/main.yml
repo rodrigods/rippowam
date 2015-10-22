@@ -33,7 +33,7 @@
       port=22
       delay=1
       timeout=300
-  when: ipa_nova_join
+  when: ipa_nova_join is defined
 
 - name: Install IPA client config for Nova hooks
   template: src=ipaclient.conf dest=/etc/nova/ipaclient.conf
