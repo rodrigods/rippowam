@@ -24,8 +24,10 @@
     - openstack
   roles:
     - common
+    - { role: staticnetwork, when: ipa_nova_join }
     - ipaclient
     - packstack
+    - { role: nova-ipa, when: ipa_nova_join }
   vars:
     hostname: "{{ ansible_fqdn }}"
     dns_search: "{{ ipa_domain }}"

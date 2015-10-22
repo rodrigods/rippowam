@@ -1,0 +1,29 @@
+---
+- name: set password for cloud-user in case network is b0rked
+  user: name=cloud-user password='$6$ndP/VMmA8.yDNiQI$cee4x3Qe1O5foUWdgwukRuy.Wetc9vop9o43C.PPKZS1liuFMr6Ezm.vtW8O9ruuKfJXionr7.oQ0UEeNwKdO.'
+
+- name: Get network gateway IP address
+  shell: ip route show | awk '/^default/ {print $3; exit}'
+  register: network_gw_ip
+  changed_when: false
+
+- name: disable NetworkManager
+  service: name=NetworkManager state=stopped enabled=no
+
+- name: set up static networking
+  template: src=static-ifcfg-eth0 dest=/etc/sysconfig/network-scripts/ifcfg-eth0
+  notify:
+    - restart network
+
+- name: Restart networking if necessary
+  meta: flush_handlers
+  when: ipa_nova_join
+
+- name: Wait for server to restart
+  local_action:
+    module: wait_for
+      host=openstack.{{ ipa_domain }}
+      port=22
+      delay=1
+      timeout=300
+  when: ipa_nova_join

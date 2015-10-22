@@ -1,0 +1,38 @@
+---
+openstack_api_versions:
+  \"identity\": 3
+
+os_env:
+  OS_AUTH_TYPE: v3password
+  OS_AUTH_URL: https://{{ ansible_fqdn }}:5000/v3
+  OS_USERNAME: admin
+  OS_PASSWORD: password
+  OS_PROJECT_NAME: admin
+  OS_USER_DOMAIN_ID: default
+  OS_PROJECT_DOMAIN_ID: default
+  OS_IDENTITY_API_VERSION: 3
+
+os_env_v2:
+  OS_AUTH_URL: https://{{ ansible_fqdn }}:5000/v2.0
+  OS_USERNAME: admin
+  OS_PASSWORD: password
+  OS_PROJECT_NAME: admin
+  OS_IDENTITY_API_VERSION: 2
+  OS_TENANT_NAME: admin
+
+service_authtoken:
+  auth_uri: "https://{{ hostname }}:5000"
+  auth_plugin: v3fedkerb
+  auth_url: "https://{{ hostname }}:5000/v3"
+  identity_provider: sssd
+  protocol: kerberos
+  project_name: services
+  project_domain_id: default
+
+mysql_principal: MySQL/{{ ansible_fqdn  }}@{{ ipa_realm }}
+
+glance_api_haproxy_port: 9293
+cinder_api_haproxy_port: 8777
+neutron_api_haproxy_port: 9697
+nova_api_haproxy_port: 8778
+nova_ec2_haproxy_port: 8779

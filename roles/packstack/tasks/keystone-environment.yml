@@ -1,4 +1,10 @@
 ---
+- name: list users
+  command:  openstack user list -c Name -f csv
+  environment: os_env
+  register: os_users
+  changed_when: false
+
 - name: list groups
   command:  openstack group list -c Name -f csv
   environment: os_env
@@ -29,6 +35,21 @@
   register: os_endpoints
   changed_when: false
 
+- name: demo project
+  command: openstack project create demo
+  environment: os_env
+  when: '"\"demo\"" not in os_projects.stdout_lines'
+
+- name: services project
+  command: openstack project create services
+  environment: os_env
+  when: '"\"services\"" not in os_projects.stdout_lines'
+
+- name: demo user
+  command: openstack user create demo --password "{{ keystone_demo_password }}"
+  environment: os_env
+  when: '"\"demo\"" not in os_users.stdout_lines'
+
 - name: admins group
   command: openstack group create admins
   environment: os_env
@@ -43,6 +64,11 @@
   command: openstack group create services
   environment: os_env
   when: '"\"services\"" not in os_groups.stdout_lines'
+
+- name: demo group
+  command: openstack group create demo
+  environment: os_env
+  when: '"\"demo\"" not in os_groups.stdout_lines'
 
 - name: create Member role
   command: openstack role create Member
