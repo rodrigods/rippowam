@@ -1,0 +1,5 @@
+[rharwood-mariadb]
+name=GSSAPI Mariadb with galera
+baseurl=https://admiyo.fedorapeople.org/maria-galera/
+enabled=1
+gpgcheck=0
