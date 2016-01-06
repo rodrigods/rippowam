@@ -5,10 +5,6 @@
   with_items:
     - rharwood-galera-maria.repo
 
-- name: Install packstack repos
-  register: packstackrepo
-  copy: src=RH7-RHOS-7.0.repo
-        dest=/etc/yum.repos.d/RH7-RHOS-7.0.repo
 
 # /etc/my.cnf was owned by  mariadb-libs before
 # but now is owned by mariadb-config.

@@ -1,0 +1,18 @@
+
+- hosts: ipa
+  remote_user: "{{ cloud_user }}"
+  tags: all
+  tasks: []
+
+- hosts: ipa
+  sudo: yes
+  remote_user: "{{ cloud_user }}"
+  tags:
+    - ipa
+  roles:
+    - openstack-clean
+  vars:
+    hostname: "{{ ansible_fqdn }}"
+    ipa_admin_password: "{{ ipa_admin_user_password }}"
+    ipa_dns_forwarder:  "{{ ipa_forwarder }}"
+

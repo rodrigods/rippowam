@@ -1,0 +1,37 @@
+---
+- name: install keycloak prerequisites
+  tags:
+    - keycloak
+  yum: name={{ item }} state=present
+  with_items:
+    - java-1.7.0-openjdk.x86_64
+    - firewalld
+
+
+- name: get Keycloak distribution tarball
+  tags:
+    - keycloak
+  get_url: url=http://downloads.jboss.org/keycloak/1.6.1.Final/keycloak-1.6.1.Final.tar.gz dest=/root/
+
+- name: unpack keycloak
+  tags:
+    - keycloak
+  unarchive: src=/root/keycloak-1.6.1.Final.tar.gz dest=/root/ copy=no
+
+- name: enable firewalld
+  tags:
+    - ipaserver
+  service: enabled=yes
+           state=started
+           name=firewalld
+
+- name: Open Firewall for services
+  tags:
+    - keycloak
+  firewalld: port={{ item }}
+             permanent=true
+             state=enabled
+             immediate=yes
+  with_items:
+    - 8080/tcp
+    - 9990/tcp

@@ -1,4 +1,4 @@
 ## handled by ansible
-search {{ dns_search }}
+search {{ ipa_domain }}
 
-nameserver {{ hostvars[groups['ipa'][0]]['ansible_default_ipv4']['address'] }}
+nameserver {{ nameserver }}
