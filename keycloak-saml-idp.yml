@@ -1,0 +1,11 @@
+- hosts: openstack
+  sudo: yes
+  remote_user: "{{ cloud_user }}"
+  tags:
+    - keycloak-idp
+  roles:
+    - keycloak-saml-idp
+  vars:
+    hostname: "{{ ansible_fqdn }}"
+    dns_search: "{{ ipa_domain }}"
+    ipa_admin_password: "{{ipa_admin_user_password }}"

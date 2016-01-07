@@ -1,0 +1,45 @@
+---
+- name: copy rules file
+  copy: src=mapping_keycloak_saml2.json
+        dest=/mapping_keycloak_saml2.json
+
+- name: list idps
+  command: openstack identity provider list -c ID -f csv
+  environment: os_env
+  register: os_idps
+  changed_when: false
+
+
+- name: list mappings
+  command: openstack mapping list -c ID -f csv
+  environment: os_env
+  register: os_mappings
+  changed_when: false
+
+- name: Keycloak identity provider
+  command: >
+    openstack identity provider create
+    --remote-id https://keycloak.{{ ipa_domain }}/idp/saml2/metadata
+    keycloak
+  environment: os_env
+  when: '"\"keycloak\"" not in os_idps.stdout_lines'
+
+- name: create Keycloak mapping
+  command: openstack mapping create --rules /mapping_keycloak_saml2.json keycloak_mapping
+  environment: os_env
+  when: '"\"keycloak_mapping\"" not in os_mappings.stdout_lines'
+
+- name: list protocols Keycloak
+  command: openstack federation protocol list --identity-provider keycloak -c id -f csv
+  environment: os_env
+  register: os_keycloak_protocols
+  changed_when: false
+
+- name: federation protocol create
+  command: >
+    openstack federation protocol create
+    --identity-provider keycloak
+    --mapping keycloak_mapping
+    saml2
+  environment: os_env
+  when: ' "\"saml2\"" not in os_keycloak_protocols.stdout_lines'

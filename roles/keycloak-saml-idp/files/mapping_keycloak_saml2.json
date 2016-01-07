@@ -1,0 +1,34 @@
+[
+    {
+        "local": [
+            {
+                "user": {
+                    "name": "{0}",
+                    "domain": {"name": "Default"}
+                }
+            }
+        ],
+        "remote": [
+            {
+                "type": "MELLON_NAME_ID"
+            }
+        ]
+    },
+
+    {
+        "local": [
+            {
+                "groups": "{0}",
+                "domain": {
+                    "name": "Default"
+                }
+            }
+        ],
+        "remote": [
+            {
+                "type": "MELLON_groups",
+                "whitelist": ["ipausers", "admins"]
+            }
+        ]
+    }
+]
