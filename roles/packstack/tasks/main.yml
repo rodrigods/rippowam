@@ -22,7 +22,7 @@
 #- include: mariadb-kerberos.yml
 #- include: barbican.yml
 #- include: test-encrypted-volumes.yml
-- include: proton.yml
+#- include: proton.yml
 
 - name: install accrc files
   sudo: no
