@@ -1,5 +1,6 @@
 ---
-keycloak_version: 1.6.1.Final
+keycloak_version: 1.8.0.CR1
+#keycloak_version: 1.6.1.Final
 keycloak_dir: /var/lib/keycloak
 keycloak_archive: keycloak-{{ keycloak_version }}.tar.gz
 keycloak_url: http://downloads.jboss.org/keycloak/{{ keycloak_version }}/{{keycloak_archive }}
