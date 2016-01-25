@@ -6,7 +6,7 @@ Rippowam is an ansible playbook for setting up flavors of OpenStack on top of
 RPM based Operating systems.  The current focus is on the RHEL-OSP7 release
 and RHEL 7.2 Base Operating system.
 
-Rippowam has a sister project, called Ossipee_ that creates the network and 
+Rippowam has a sister project, called Ossipee_ that creates the network and
 virtual machines necessary for installing and demonstrating Rippowam.
 
 .. _Ossipee: https://github.com/admiyo/ossipee/
@@ -23,7 +23,7 @@ Running
 
 To run Rippowam:
 
-  ansible-playbook -i ~/.ossipee/inventory/yourname.ini ~/devel/rippowam/site.yml 
+  ansible-playbook -i ~/.ossipee/deployments/yourname/inventory.ini  ~/devel/rippowam/site.yml
 
 
 Once the playbook completes, you should have a working IPA server and
@@ -39,7 +39,7 @@ hosts such as:
   10.16.19.101 ipa.yourname.test
   10.16.18.245 openstack.yourname.test
 
-You should have ssh access to the hosts using an SSH keypair.  
+You should have ssh access to the hosts using an SSH keypair.
 
 Kerberos
 ========
