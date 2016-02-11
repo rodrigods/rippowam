@@ -1,8 +1,8 @@
 ---
 - name: Install packstack repos
   register: packstackrepo
-  copy: src=RH7-RHOS-7.0.repo
-        dest=/etc/yum.repos.d/RH7-RHOS-7.0.repo
+  copy: src=RH7-RHOS-8.0.repo
+        dest=/etc/yum.repos.d/RH7-RHOS-8.0.repo
 #- include: maria-prep.yml
 - include: ipa-pre-packstack.yml
 - include: packstack.yml
